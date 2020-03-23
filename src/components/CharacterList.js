@@ -1,16 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export default function CharacterList() {
-  // TODO: Add useState to track data from useEffect
+export default function CharacterList(props) {
 
-  useEffect(() => {
-    // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-  }, []);
+  const StyledDiv = styled.div `
+    background: lightgrey;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    border-radius: 15px;
+    justify-content: space-around;
+  `
 
   return (
-    <section className="character-list">
-      <h2>TODO: `array.map()` over your state here!</h2>
-    </section>
-  );
+    <span>
+    <Link to='/'>Home</Link>
+    <StyledDiv>  
+
+      {props.characters.map((character, i) => {
+        return (
+        <div value={character.name} key={i}>
+          <h2>{character.name}</h2>
+          <img src={character.image} alt={character.name}/>
+        </div>
+        )
+      })
+      }
+    </StyledDiv>
+    </span>
+  )
 }
